@@ -1,7 +1,6 @@
 package com.ics.esmaeili.homeTask.service.impl;
 
 import com.ics.esmaeili.homeTask.dto.UserDto;
-import com.ics.esmaeili.homeTask.entity.Task;
 import com.ics.esmaeili.homeTask.entity.User;
 import com.ics.esmaeili.homeTask.mapper.UserMapper;
 import com.ics.esmaeili.homeTask.repository.UserRepository;
@@ -49,7 +48,8 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserDto save(UserDto userDto) {
-        User save = repository.save(userMapper.toEntity(userDto));
+        User entity = User.of(userDto.getUserName(), userDto.getPassword(), userDto.getEmail());
+        User save = repository.save(entity);
         return userMapper.toDto(save);
     }
 
