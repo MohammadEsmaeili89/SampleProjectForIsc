@@ -1,12 +1,29 @@
 spring:
-  datasource:
+    security:
+      oauth2:
+        client:
+          registration:
+            cognito:
+              clientId: 40500
+              clientSecret: MIICmTCCAYECBgGLhTeZJDANBgkqhkiG9w0BAQsFADAQMQ4wDAYDVQQDDAU0MDUwMDAeFw0yMzEwMzExMDA5NTVaFw0zMzEwMzExMDExMzVaMBAxDjAMBgNVBAMMBTQwNTAwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAigphFlKU29EdgSye1qKVTJ656Vf24mFxqyfs7BgrhOWsEX2rTYRt7AeAba6NUZrGbfpVquQ7yt1eFBnsH1uyaDQCpYmtSUK8DmGOG8Z1Rn/nEa89j0aoLGrqggU5OLGpDdNn0GwITLGe8y8ij7KBjKO6cTJRw3HxfjOJpQT9qTDOeXObkcuh4h9x6OV5OVYegZnltmMXh+eBvFckn/WK+gd+rNxsFjM7vT2o1KULRePCAwHo6T0NMMGBsMm8kINO8n7llMuC5orz42fHle7d/f7Gajzcb0iUr7paNVALu7BN4Xi1YAxZCBy7gK0vX120LTE2jzK6Y07R0rA9vPdlbQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQANs6CTDeq3pH0BYcS/JMnGDlc0LShoHJAa5h2A8YP75mY79xRiNPutmDQnkp7Y5STjY7b4NolOHVNQh0Bk0oBIfD2DQ1Qrg8VaPZGlbLke/1MyzIiWNqgVHBFPs2Mc6L2Ztjgwr7DwrP+zhNcX+PLHq14qNLkTC5yPUksNc/J4N6WqqUfjQ7cfjKTHPksVXxbMWbjSBk6IKTsQhwtbEmM4axFsS8dm6nEXqJULAEYiCdEieFBodvla5M3/xXE4IWGbFFQA2MzBI1DPeGuT+UTDUC5FsYPH3UfL0D+PXtrpxNz/kxQSwcc+PbWsrVeouAcyK+wAX9ImNqD6SlX7DGIR
+              scope: openid, profile, roles
+              redirect-uri: http://localhost:8081/login/oauth2/code/Esmaeili
+              clientName: admin1
+          provider:
+            cognito:
+              issuerUri: http://localhost:8081/auth/realms/oauth2
+              user-name-attribute: admin1:username
+datasource:
     url: jdbc:h2:mem:mydb
     username: sa
     password: password
     driverClassName: org.h2.Driver
-  jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    jpa:
+      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 
-  h2:
-    console:
-      enabled: true
+      h2:
+        console:
+          enabled: true
+
+
+

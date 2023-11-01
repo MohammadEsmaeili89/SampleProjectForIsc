@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping
-    ResponseEntity<Page<UserDto>> findAll(@RequestParam("pageNumber") Integer pageNumber , @RequestParam("pageSize") Integer pageSize) {
+    public ResponseEntity<Page<UserDto>> findAll(@RequestParam("pageNumber") Integer pageNumber , @RequestParam("pageSize") Integer pageSize) {
         return ResponseEntity.ok(userService.findAll(pageNumber,pageSize));
     }
 

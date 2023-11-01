@@ -1,6 +1,8 @@
 package com.ics.esmaeili.homeTask.service.impl;
 
+import com.ics.esmaeili.homeTask.dto.TaskDto;
 import com.ics.esmaeili.homeTask.dto.UserDto;
+import com.ics.esmaeili.homeTask.entity.Task;
 import com.ics.esmaeili.homeTask.entity.User;
 import com.ics.esmaeili.homeTask.mapper.UserMapper;
 import com.ics.esmaeili.homeTask.repository.UserRepository;
@@ -8,6 +10,7 @@ import com.ics.esmaeili.homeTask.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,7 +23,9 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     @Override
     public Page<UserDto> findAll(int pageNumber, int pageSize) {
-        return null;
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        Page<User> users = repository.findAll(pageRequest);
+        return  users.map(userMapper::toDto);
     }
 
     @Override
